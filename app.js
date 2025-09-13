@@ -185,7 +185,7 @@ app.post("/recommend", async (req, res) => {
         });
       } else {
         const jobDetails = await getAIDetailsForJob(roleName);
-         console.log("AI jobDetails:", jobDetails);
+         console.log("AI jobDetails:", jobDetails.jobRole , jobDetails.jobrole, jobDetails.role);
         if (jobDetails) {
           await db.query(
             "INSERT INTO job_roles (role_name, description, tech_stack, resume_keywords, project_ideas, roadmap_link) VALUES (?, ?, ?, ?, ?, ?)",
