@@ -170,10 +170,11 @@ app.post("/recommend", async (req, res) => {
       const roleName = typeof r === "string" ? r : r.role;
       const score = r.score || null;
 
-      const [rows] = await db.query(
-        "SELECT * FROM job_roles WHERE LOWER(role_name) = ?",
-        [roleName.toLowerCase()]
-      );
+        const [rows] = await db.query(
+          "SELECT * FROM job_roles WHERE TRIM(LOWER(role_name)) = TRIM(LOWER(?))",
+          [role]
+        );
+
 
       if (rows.length > 0) {
         const row = rows[0];
