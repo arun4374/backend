@@ -172,7 +172,7 @@ app.post("/recommend", async (req, res) => {
 
         const [rows] = await db.query(
           "SELECT * FROM job_roles WHERE TRIM(LOWER(role_name)) = TRIM(LOWER(?))",
-          [role_name]
+          [roleName]
         );
 
 
