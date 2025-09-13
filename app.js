@@ -193,7 +193,7 @@ app.post("/recommend", async (req, res) => {
           await db.query(
             "INSERT INTO job_roles (role_name, description, tech_stack, resume_keywords, project_ideas, roadmap_link) VALUES (?, ?, ?, ?, ?, ?)",
             [
-              jobDetails.role || jobDetails.jobRole || jobDetails.jobrole,
+              jobDetails.jobRole || jobDetails.jobrole,
               jobDetails.description,
               JSON.stringify(jobDetails.techStack),
               JSON.stringify(jobDetails.resumeKeywords),
