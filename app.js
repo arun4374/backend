@@ -15,7 +15,7 @@ dotenv.config();
 
 const app = express();
 
-console.log(process.env.DB_PASSWORD);
+const PORT = process.env.PORT || 10000;
 
 // ---------------------------
 // Middlewares
@@ -27,14 +27,6 @@ app.use(morgan("dev")); // logging
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-app.use(express.static(path.join(__dirname, "public")));
-
-
-app.get("*", (req, res, next) => {
-  if (req.path.startsWith("/api")) return next();
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
 
 // ---------------------------
 // MySQL connection (Pool for prod)
@@ -290,5 +282,4 @@ app.use((err, req, res, next) => {
 // ---------------------------
 // Start server
 // ---------------------------
-const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
