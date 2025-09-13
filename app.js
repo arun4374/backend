@@ -5,16 +5,10 @@ import dotenv from "dotenv";
 import OpenAI from "openai";
 import helmet from "helmet";
 import morgan from "morgan";
-import path from "path";
-import { fileURLToPath } from "url";
-
-
-
 
 dotenv.config();
 
 const app = express();
-
 const PORT = process.env.PORT || 10000;
 
 // ---------------------------
@@ -25,8 +19,6 @@ app.use(express.json());
 app.use(helmet()); // security headers
 app.use(morgan("dev")); // logging
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // ---------------------------
 // MySQL connection (Pool for prod)
