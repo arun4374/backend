@@ -160,6 +160,8 @@ app.post("/recommend", async (req, res) => {
     }
 
     const aiRoles = await getAIJobRoles(skills);
+
+    console.log("Ai roles:", aiRoles);
    
 
     const finalJobs = [];
@@ -185,6 +187,7 @@ app.post("/recommend", async (req, res) => {
         });
       } else {
         const jobDetails = await getAIDetailsForJob(roleName);
+        console.log("Ai jobDetails:", jobDetails);
          console.log("AI jobDetails:", jobDetails.jobRole , jobDetails.jobrole, jobDetails.role);
         if (jobDetails) {
           await db.query(
