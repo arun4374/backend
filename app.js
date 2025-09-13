@@ -160,6 +160,8 @@ app.post("/recommend", async (req, res) => {
     }
 
     const aiRoles = await getAIJobRoles(skills);
+   
+
     const finalJobs = [];
 
     for (const r of aiRoles) {
@@ -183,6 +185,7 @@ app.post("/recommend", async (req, res) => {
         });
       } else {
         const jobDetails = await getAIDetailsForJob(roleName);
+         console.log("AI jobDetails:", jobDetails);
         if (jobDetails) {
           await db.query(
             "INSERT INTO job_roles (role_name, description, tech_stack, resume_keywords, project_ideas, roadmap_link) VALUES (?, ?, ?, ?, ?, ?)",
