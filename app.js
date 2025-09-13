@@ -130,7 +130,7 @@ async function getAIJobRoles(skills) {
 async function getAIDetailsForJob(roleName) {
   const prompt = `
 Provide details for the job role: "${roleName}".
-Include description, tech stack, resume keywords, project ideas, roadmap link.
+Include jobrole, description, tech stack, resume keywords, project ideas, roadmap link.
 Respond as JSON.
 `;
 
@@ -190,7 +190,7 @@ app.post("/recommend", async (req, res) => {
           await db.query(
             "INSERT INTO job_roles (role_name, description, tech_stack, resume_keywords, project_ideas, roadmap_link) VALUES (?, ?, ?, ?, ?, ?)",
             [
-              jobDetails.role,
+              jobDetails.role || jobDetails.jobRole || jobDetails.jobrole,
               jobDetails.description,
               JSON.stringify(jobDetails.techStack),
               JSON.stringify(jobDetails.resumeKeywords),
